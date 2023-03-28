@@ -1,5 +1,10 @@
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/scrollbar";
+import "swiper/css/navigation";
 
+import { Autoplay, Navigation, Scrollbar } from "swiper";
 const MainHeader = () => {
     return (
         <>
@@ -19,6 +24,58 @@ const MainHeader = () => {
                             <a className="_logoMy">MY</a>
                         </Link>
                     </div>
+                    <div className="carousel">
+                        <Swiper
+                            autoplay={{
+                                delay: 2500,
+                                disableOnInteraction: false,
+                            }}
+                            initialSlide={1}
+                            loop={true}
+                            slidesPerView={4}
+                            spaceBetween={180}
+                            centeredSlides={true}
+                            scrollbar={{
+                                hide: true,
+                                dragSize: 40,
+                            }}
+                            modules={[Scrollbar, Autoplay, Navigation]}
+                            className="mySwiper"
+                        >
+                            <SwiperSlide>
+                                <div className="test">
+                                    <span>스마트 튜브 부동산 연구소</span>
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="test">Slide 1</div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="test">Slide 1</div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="test">Slide 1</div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="test">Slide 1</div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="test">Slide 1</div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="test">Slide 1</div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="test">Slide 1</div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="test">Slide 1</div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="test">Slide 1</div>
+                            </SwiperSlide>
+                        </Swiper>
+                    </div>
                 </div>
             </header>
             <style jsx>{`
@@ -30,7 +87,6 @@ const MainHeader = () => {
                 }
                 .header_Wrap {
                     display: flex;
-
                     flex-direction: column;
                     width: 100%;
                     margin: 0 auto;
@@ -72,6 +128,21 @@ const MainHeader = () => {
                     color: #fff;
                     font-weight: 600;
                     font-size: 24px;
+                }
+
+                .test {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: #fff;
+                    width: 295px;
+                    height: 338px;
+                    padding: 0 12px;
+                    border-radius: 4px;
+                }
+                .carousel {
+                    margin-top: 20px;
                 }
             `}</style>
         </>
