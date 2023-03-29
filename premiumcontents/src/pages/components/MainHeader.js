@@ -83,6 +83,7 @@ const MainHeader = () => {
                     display: flex;
                     width: 100%;
                     height: 489px;
+                    padding-bottom: 50px;
                     background: linear-gradient(180deg, #8f66d2 0%, #5c3e8c 99.99%, rgba(143, 102, 210, 0) 100%, rgba(43, 26, 70, 0.53) 100%);
                 }
                 .header_Wrap {
@@ -139,7 +140,8 @@ const MainHeader = () => {
                     width: 295px;
                     height: 338px;
                     padding: 0 12px;
-                    border-radius: 4px;
+                    border-radius: 15px;
+                    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.25);
                 }
                 .carousel {
                     margin-top: 20px;

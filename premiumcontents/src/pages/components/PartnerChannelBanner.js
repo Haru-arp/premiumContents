@@ -26,7 +26,7 @@ const PartnerChannelBanner = (Props) => {
                     width: 100%;
                     height: 150px;
                     border-radius: 15px;
-                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+                    box-shadow: 0px 4px 15px rgba(100, 100, 100, 0.28);
                     background: #ffffff;
                     padding: 10px 60px;
                 }
