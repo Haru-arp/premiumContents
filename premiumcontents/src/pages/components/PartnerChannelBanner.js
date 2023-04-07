@@ -4,7 +4,7 @@ const PartnerChannelBanner = (Props) => {
     console.log("props", Props);
     return (
         <>
-            <Link href="/" legacyBehavior>
+            <Link href={{ pathname: `/Channel/${Props.channel}` }} legacyBehavior>
                 <a>
                     <div className="PartnerChannelBanner">
                         <div className="ChannerThumbnail">
@@ -25,9 +25,10 @@ const PartnerChannelBanner = (Props) => {
                     align-items: center;
                     width: 100%;
                     height: 150px;
-                    border-radius: 15px;
-                    box-shadow: 0px 4px 15px rgba(100, 100, 100, 0.28);
-                    background: #ffffff;
+                    border-radius: 10px;
+                    -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.07);
+                    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.07);
+                    background-color: #fff;
                     padding: 10px 60px;
                 }
                 .ChannerThumbnail {

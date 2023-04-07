@@ -30,7 +30,6 @@ const MainFooter = () => {
                         height: 300px;
                     }
                     .Footer_intro {
-                        margin-top: 50px;
                         background: #593d7c;
                     }
                     .intro {

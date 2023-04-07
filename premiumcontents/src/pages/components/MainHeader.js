@@ -20,7 +20,7 @@ const MainHeader = () => {
                         <Link href={"/"} legacyBehavior>
                             <a className="_logo_Premium">Premium Contents</a>
                         </Link>
-                        <Link href={"/"} legacyBehavior>
+                        <Link href={"/my/mypage"} legacyBehavior>
                             <a className="_logoMy">MY</a>
                         </Link>
                     </div>
@@ -108,6 +108,7 @@ const MainHeader = () => {
                     border-radius: 14.5px;
                     letter-spacing: -0.5px;
                     font-weight: 600;
+                    font-size: 12px;
                 }
                 .premium_header {
                     margin-top: 5px;

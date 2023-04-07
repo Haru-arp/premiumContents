@@ -31,9 +31,10 @@ const PremiumCard = (Props) => {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    background: #ffffff;
-                    border-radius: 15px;
-                    box-shadow: 0px 4px 15px rgba(100, 100, 100, 0.28);
+                    border-radius: 10px;
+                    -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.07);
+                    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.07);
+                    background-color: #fff;
                     padding: 16px 8px;
                 }
                 .cardThumbnail {
