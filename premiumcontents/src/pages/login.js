@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-
+import axios from "axios";
 const login = () => {
     const [id, setID] = useState("");
     const [password, setPassword] = useState("");
@@ -12,6 +12,18 @@ const login = () => {
     };
     const onPwChange = (event) => {
         setPassword(event.target.value);
+    };
+    const onClick = async () => {
+        const res = await fetch("http://localhost:8080/precon/user/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: "string",
+                userPassword: "string",
+            }),
+        });
     };
 
     return (
@@ -31,7 +43,7 @@ const login = () => {
                             </div>
                         </div>
 
-                        <button className="login_btn" type="submit">
+                        <button className="login_btn" type="submit" onClick={onClick}>
                             로그인
                         </button>
                     </div>

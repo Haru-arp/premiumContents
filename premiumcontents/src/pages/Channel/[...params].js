@@ -3,7 +3,8 @@ import { useState } from "react";
 import Home_component from "../components/Home_component";
 import MainFooter from "../components/MainFooter";
 import Link from "next/link";
-const userChannel = (Params) => {
+const userChannel = ({ prop }) => {
+    console.log(prop);
     const router = useRouter();
     const Premium = {
         img: "https://scs-phinf.pstatic.net/MjAyMTEyMjdfMTcy/MDAxNjQwNjE2MzE3MTc0.4QwyPmeYhZ_yjQy_IchMbySnayH7lagnineQVWOV2nUg.kkQbmR5PsYgXqWNoZsivjmrcKOVOZ3Eu40LYopus6-og.PNG/image%7Cpremium%7Cchannel%7C3mit%7C2021%7C12%7C27%7C1640616317145.png?type=nfs200_200",
@@ -11,8 +12,8 @@ const userChannel = (Params) => {
         description: "3분만에 읽을 수 있는 IT트렌드를 배달해드려요",
         tag: "IT/Tech",
     };
-    const [category, setCategory] = useState("home");
-    console.log(Premium);
+    const [category, setCategory] = useState("홈");
+
     return (
         <>
             <div className="Container">
@@ -50,20 +51,20 @@ const userChannel = (Params) => {
                         <div className="three_box"></div>
                     </div>
                     <div className="threeMenu">
-                        <div style={{ display: "flex", gap: 20, justifyContent: "center" }}>
-                            <button className={category === "home" ? "select" : "noneSelect"} onClick={() => setCategory("home")}>
-                                홈
-                            </button>
-                            <button className={category === "category" ? "select" : "noneSelect"} onClick={() => setCategory("category")}>
-                                카테고리
-                            </button>
-                            <button className={category === "info" ? "select" : "noneSelect"} onClick={() => setCategory("info")}>
-                                정보
-                            </button>
+                        <div style={{ display: "flex", gap: 40, justifyContent: "center" }}>
+                            {prop.map((data) => {
+                                return (
+                                    <div key={data.channelBoardIdx}>
+                                        <div className={category === data.channelBoardName ? "select" : "noneSelect"} onClick={() => setCategory(data.channelBoardName)}>
+                                            {data.channelBoardName}
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                     <div className="contents_Container">
-                        {category === "home" && (
+                        {category === "홈" && (
                             <>
                                 <div className="Home_container">
                                     <Home_component channel="haru" />
@@ -75,14 +76,28 @@ const userChannel = (Params) => {
                                 </div>
                             </>
                         )}
-                        {category === "category" && (
+                        {category === "카테고리" && (
                             <>
                                 <div className="category_container">
                                     <div>카테고리</div>
                                 </div>
                             </>
                         )}
-                        {category === "info" && (
+                        {category === "뉴스레터" && (
+                            <>
+                                <div className="category_container">
+                                    <div>뉴스레터</div>
+                                </div>
+                            </>
+                        )}
+                        {category === "재생목록" && (
+                            <>
+                                <div className="category_container">
+                                    <div>재생목록</div>
+                                </div>
+                            </>
+                        )}
+                        {category === "정보" && (
                             <>
                                 <div className="info_container">
                                     <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
@@ -96,7 +111,6 @@ const userChannel = (Params) => {
                                 </div>
                             </>
                         )}
-                        {/* ++뉴스레터, 재생목록 추가 */}
                     </div>
                 </div>
                 <MainFooter />
@@ -260,3 +274,14 @@ const userChannel = (Params) => {
 };
 
 export default userChannel;
+
+export async function getServerSideProps() {
+    const res = await fetch(`http://localhost:8080/precon/channel/idx/1`);
+    const results = await res.json();
+    const prop = results.channelBoardList;
+    return {
+        props: {
+            prop,
+        },
+    };
+}
