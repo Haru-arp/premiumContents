@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import PartnerChannelBanner from "./components/PartnerChannelBanner";
 import Link from "next/link";
 import PremiumCard from "./components/PremiumCard";
+import SubscribeGuide from "./components/SubscribeGuide";
 export default function Home() {
     const [tag, setTag] = useState("all");
     const [pTag, setPtag] = useState("all");
@@ -21,8 +22,130 @@ export default function Home() {
         <>
             <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
                 <MainHeader />
+                <SubscribeGuide />
                 <div className="container">
-                    <div className="weeklyPartnerChannel">
+                    <div className="recommended_channel">
+                        <span style={{ fontSize: 20, fontWeight: "bold", letterSpacing: -0.7 }}>추천 채널</span>
+                    </div>
+                    <div className="tagBtn">
+                        <button className={tag === "all" ? "selectTag" : "noneSelectTag"} onClick={() => setTag("all")}>
+                            전체
+                        </button>
+                        <button className={tag === "IT" ? "selectTag" : "noneSelectTag"} onClick={() => setTag("IT")}>
+                            IT/Tech
+                        </button>
+                        <button className={tag === "Sports" ? "selectTag" : "noneSelectTag"} onClick={() => setTag("Sports")}>
+                            스포츠/건강
+                        </button>
+                    </div>
+                    <div className="recommand_channel_container">
+                        {/*태그버튼 클릭하면 태그 클릭한대로 렌더링 해주되, 
+                        유료 무료 정보에 따라서 유료면 왼쪽에 무료면 오른쪽에 따로 렌더링 되게 코딩 */}
+                        <div>
+                            <div>유료</div>
+                        </div>
+                        <div>
+                            <div>무료</div>
+                        </div>
+                    </div>
+                </div>
+                <MainFooter />
+
+                <style jsx>
+                    {`
+                        .container {
+                            display: flex;
+                            flex: 1;
+                            flex-direction: column;
+                            width: 100%;
+                            margin: 0 auto;
+                            max-width: 1120px;
+                            padding-left: 20px;
+                            padding-right: 20px;
+                            box-sizing: border-box;
+                            margin-bottom: 50px;
+                        }
+                         {
+                            /* .weeklyPartnerChannel {
+                            margin-top: 50px;
+                        } */
+                        }
+                        .recommended_channel {
+                            margin-top: 50px;
+                        }
+                        .recommand_channel_container {
+                            display: flex;
+                            flex-direction: row;
+                        }
+                        .tagBtn {
+                            display: flex;
+                            margin-top: 15px;
+                            gap: 10px;
+                        }
+                        .selectTag {
+                            background-color: #585163;
+                            padding: 7px 16px;
+                            border: none;
+                            border-radius: 20px;
+                            color: #fff;
+                        }
+                        .noneSelectTag {
+                            background-color: #f3f3f3;
+                            padding: 7px 16px;
+                            border: none;
+                            border-radius: 20px;
+                            color: #acacac;
+                        }
+                        .PartnerChannelBannerContainer {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            margin-top: 30px;
+                        }
+                        .viewAllChannel {
+                            display: flex;
+                            justify-content: center;
+                            margin-top: 30px;
+                        }
+                        .viewAllChannelBtn {
+                            background: transparent;
+                            border: 1px solid #8a8a8a;
+                            padding: 17px 43px;
+                            border-radius: 30px;
+                        }
+                        .selectPTag {
+                            background-color: #8b66c7;
+                            padding: 7px 16px;
+                            border: none;
+                            border-radius: 20px;
+                            color: #fff;
+                        }
+                        .weeklyPremiumChannel {
+                            margin-top: 50px;
+                        }
+                        .PremiumChannelCardContainer {
+                            display: flex;
+                            justify-content: center; //나중에 바꾸기
+                            flex-direction: row;
+                            gap: 15px;
+                            flex-wrap: wrap;
+                            margin-top: 30px;
+                        }
+                        .viewAllChannelBtn2 {
+                            background: transparent;
+                            border: 1px solid #8b66c7;
+                            padding: 17px 43px;
+                            border-radius: 30px;
+                            color: #8b66c7;
+                        }
+                    `}
+                </style>
+            </div>
+        </>
+    );
+}
+{
+    /* <div className="weeklyPartnerChannel">
                         <span style={{ fontSize: 20, fontWeight: "bold", letterSpacing: -0.7 }}>이번 주 인기 파트너 채널</span>
                         <div className="tagBtn">
                             <button className={tag === "all" ? "selectTag" : "noneSelectTag"} onClick={() => setTag("all")}>
@@ -200,91 +323,5 @@ export default function Home() {
                                 </Link>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <MainFooter />
-
-                <style jsx>
-                    {`
-                        .container {
-                            display: flex;
-                            flex: 1;
-                            flex-direction: column;
-                            width: 100%;
-                            margin: 0 auto;
-                            max-width: 1120px;
-                            padding-left: 20px;
-                            padding-right: 20px;
-                            box-sizing: border-box;
-                            margin-bottom: 50px;
-                        }
-                        .weeklyPartnerChannel {
-                            margin-top: 50px;
-                        }
-                        .tagBtn {
-                            display: flex;
-                            margin-top: 15px;
-                            gap: 10px;
-                        }
-                        .selectTag {
-                            background-color: #585163;
-                            padding: 7px 16px;
-                            border: none;
-                            border-radius: 20px;
-                            color: #fff;
-                        }
-                        .noneSelectTag {
-                            background-color: #f3f3f3;
-                            padding: 7px 16px;
-                            border: none;
-                            border-radius: 20px;
-                            color: #acacac;
-                        }
-                        .PartnerChannelBannerContainer {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 10px;
-                            margin-top: 30px;
-                        }
-                        .viewAllChannel {
-                            display: flex;
-                            justify-content: center;
-                            margin-top: 30px;
-                        }
-                        .viewAllChannelBtn {
-                            background: transparent;
-                            border: 1px solid #8a8a8a;
-                            padding: 17px 43px;
-                            border-radius: 30px;
-                        }
-                        .selectPTag {
-                            background-color: #8b66c7;
-                            padding: 7px 16px;
-                            border: none;
-                            border-radius: 20px;
-                            color: #fff;
-                        }
-                        .weeklyPremiumChannel {
-                            margin-top: 50px;
-                        }
-                        .PremiumChannelCardContainer {
-                            display: flex;
-                            justify-content: center; //나중에 바꾸기
-                            flex-direction: row;
-                            gap: 15px;
-                            flex-wrap: wrap;
-                            margin-top: 30px;
-                        }
-                        .viewAllChannelBtn2 {
-                            background: transparent;
-                            border: 1px solid #8b66c7;
-                            padding: 17px 43px;
-                            border-radius: 30px;
-                            color: #8b66c7;
-                        }
-                    `}
-                </style>
-            </div>
-        </>
-    );
+                    </div> */
 }
