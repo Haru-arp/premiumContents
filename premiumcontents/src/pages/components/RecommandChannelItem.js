@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const RecommandChannelItem = (props) => {
     let content = props.description;
     if (content.length >= 25) {
@@ -5,13 +7,17 @@ const RecommandChannelItem = (props) => {
     }
     return (
         <>
-            <div className="ItemContainer">
-                <img src={props.img} style={{ width: 60, borderRadius: "50%" }} />
-                <div>
-                    <div className="itemTitle">{props.title}</div>
-                    <div className="itemdesc">{content}</div>
-                </div>
-            </div>
+            <Link href={{ pathname: `/Channel/${props.title}` }} legacyBehavior>
+                <a>
+                    <div className="ItemContainer">
+                        <img src={props.img} style={{ width: 60, borderRadius: "50%" }} />
+                        <div>
+                            <div className="itemTitle">{props.title}</div>
+                            <div className="itemdesc">{content}</div>
+                        </div>
+                    </div>
+                </a>
+            </Link>
             <style jsx>
                 {`
                     .ItemContainer {

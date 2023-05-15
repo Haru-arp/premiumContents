@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Home_component from "../components/Home_component";
 import MainFooter from "../components/MainFooter";
 import Link from "next/link";
 const userChannel = ({ prop }) => {
-    console.log(prop);
+    console.log(">>111>>", { prop });
     const router = useRouter();
     const Premium = {
         img: "https://scs-phinf.pstatic.net/MjAyMTEyMjdfMTcy/MDAxNjQwNjE2MzE3MTc0.4QwyPmeYhZ_yjQy_IchMbySnayH7lagnineQVWOV2nUg.kkQbmR5PsYgXqWNoZsivjmrcKOVOZ3Eu40LYopus6-og.PNG/image%7Cpremium%7Cchannel%7C3mit%7C2021%7C12%7C27%7C1640616317145.png?type=nfs200_200",

@@ -1,11 +1,24 @@
+import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 const NewchannelItem = (props) => {
+    const router = useRouter();
+    const onClick = (title) => {
+        router.push(`/Channel/${title}`);
+    };
     let content = props.description;
     if (content.length >= 15) {
         content = content.substr(0, 15) + "...";
     }
+
     return (
         <>
-            <div className="itemContainer">
+            <div
+                onClick={() => {
+                    onClick(props.title);
+                }}
+                className="itemContainer"
+            >
                 <div style={{ display: "flex", flexDirection: "row", gap: 10, alignItems: "center" }}>
                     <img src={props.img} style={{ width: 50, height: 50, borderRadius: "50%" }} />
                     <div>
@@ -15,6 +28,7 @@ const NewchannelItem = (props) => {
                 </div>
                 <div>{">"}</div>
             </div>
+
             <style jsx>{`
                 .itemContainer {
                     width: 300px;
@@ -29,6 +43,7 @@ const NewchannelItem = (props) => {
                 }
                 .itemDesc {
                     font-size: 12px;
+                    color: #848486;
                 }
             `}</style>
         </>
