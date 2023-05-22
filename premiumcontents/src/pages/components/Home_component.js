@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const Home_component = (Props) => {
     const router = useRouter();
-    console.log(">>>>>", Props);
+    // console.log(">>>>>", Props);
     const onClick = (channel, id) => {
         router.push(`/contents/${channel}/${id}`);
     };

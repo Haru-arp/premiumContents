@@ -1,12 +1,33 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChannelItem from "../components/ChannelItem";
 import MainFooter from "../components/MainFooter";
-
-const AllChannel = () => {
+import baseURL from "../api/baseURL";
+import axios from "axios";
+const AllChannel = ({ prop }) => {
+    console.log(">>>>props>>>>", prop);
     const [List, setList] = useState("Premium");
-    const Tags = ["전체", "IT/Tech", "스포츠/건강"];
-    const [tag, setTag] = useState("전체");
+    const Tags = prop;
+
+    const [tag, setTag] = useState("string");
+    const [ChannelCategory, setChannelCategory] = useState([]);
+    const getChannelCategory = async () => {
+        const res = await axios.get(baseURL + `/channelCategory/name/${tag}`);
+
+        setChannelCategory(res.data.channelCategoryChannelList);
+    };
+    console.log(">>>>setChannelCategory", ChannelCategory);
+    const channelFree = [];
+    ChannelCategory.map((channelData) => {
+        if (channelData.channelCharged === false) {
+            channelFree.push(channelData);
+        }
+    });
+
+    console.log("channelFree.length", channelFree.length);
+    useEffect(() => {
+        getChannelCategory();
+    }, [tag]);
     const Premium = {
         0: {
             img: "https://scs-phinf.pstatic.net/MjAyMTEyMjdfMTcy/MDAxNjQwNjE2MzE3MTc0.4QwyPmeYhZ_yjQy_IchMbySnayH7lagnineQVWOV2nUg.kkQbmR5PsYgXqWNoZsivjmrcKOVOZ3Eu40LYopus6-og.PNG/image%7Cpremium%7Cchannel%7C3mit%7C2021%7C12%7C27%7C1640616317145.png?type=nfs200_200",
@@ -47,8 +68,11 @@ const AllChannel = () => {
             tag: "스포츠/건강",
         },
     };
-    console.log(Object.keys(Premium).length);
-
+    // console.log(Object.keys(Premium).length);
+    ChannelCategory.map((channelData) => {
+        console.log("channelData.channelCharged", channelData.channelCharged);
+    });
+    console.log("ChannelCategor`s length", ChannelCategory.length);
     return (
         <>
             <div className="All_container">
@@ -68,12 +92,12 @@ const AllChannel = () => {
                     <div className="PrORPar">
                         <div className="NameCon">
                             <span className={List === "Premium" ? "selectTag" : "Name"} onClick={() => setList("Premium")}>
-                                프리미엄
+                                유료 채널
                             </span>
                         </div>
                         <div className="NameCon">
                             <span className={List === "Partner" ? "selectTag" : "Name"} onClick={() => setList("Partner")}>
-                                파트너
+                                무료 채널
                             </span>
                         </div>
                     </div>
@@ -82,16 +106,22 @@ const AllChannel = () => {
                     {List === "Premium" &&
                         Tags.map((name) => {
                             return (
-                                <div className={tag === name ? "tag" : "noneSelectTag"}>
-                                    <div onClick={() => setTag(name)}>{name}</div>
+                                <div
+                                    onClick={() => {
+                                        setTag(name);
+                                        // getChannelCategory();
+                                    }}
+                                    className={tag === name ? "tag" : "noneSelectTag"}
+                                >
+                                    <div>{name}</div>
                                 </div>
                             );
                         })}
                     {List === "Partner" &&
                         Tags.map((name) => {
                             return (
-                                <div className={tag === name ? "tag" : "noneSelectTag"}>
-                                    <div onClick={() => setTag(name)}>{name}</div>
+                                <div onClick={() => setTag(name)} className={tag === name ? "tag" : "noneSelectTag"}>
+                                    <div>{name}</div>
                                 </div>
                             );
                         })}
@@ -105,7 +135,7 @@ const AllChannel = () => {
                                 <>
                                     <div className="lengthBox">
                                         <div style={{ fontWeight: "bold", fontSize: 15, color: "#444" }}>
-                                            <span style={{ color: "#8b66c7" }}>{Object.keys(Premium).length}</span>개의 채널
+                                            <span style={{ color: "#8b66c7" }}>{ChannelCategory.length}</span>개의 채널
                                         </div>
                                     </div>
                                 </>
@@ -120,7 +150,7 @@ const AllChannel = () => {
                                 <>
                                     <div className="lengthBox">
                                         <div style={{ fontWeight: "bold", fontSize: 15, color: "#444" }}>
-                                            <span style={{ color: "#8b66c7" }}>{Object.keys(Premium).length}</span>개의 채널
+                                            <span style={{ color: "#8b66c7" }}>{channelFree.length}</span>개의 채널
                                         </div>
                                     </div>
                                 </>
@@ -145,7 +175,41 @@ const AllChannel = () => {
             </div>
             <div className="contents">
                 {/* 프리미엄과 파트너, 태그에 따라서 다르게 출력 */}
-                <ChannelItem
+                {ChannelCategory.map((channelData) => {
+                    return (
+                        <>
+                            {List === "Premium" && channelData.channelCharged === true && (
+                                <>
+                                    <ChannelItem
+                                        img="https://scs-phinf.pstatic.net/MjAyMTEyMjdfMTcy/MDAxNjQwNjE2MzE3MTc0.4QwyPmeYhZ_yjQy_IchMbySnayH7lagnineQVWOV2nUg.kkQbmR5PsYgXqWNoZsivjmrcKOVOZ3Eu40LYopus6-og.PNG/image%7Cpremium%7Cchannel%7C3mit%7C2021%7C12%7C27%7C1640616317145.png?type=nfs200_200"
+                                        description={channelData.channelIntro}
+                                        title={channelData.channelName}
+                                        channelIdx={channelData.channelIdx}
+                                    />
+                                </>
+                            )}
+                            {console.log(channelData)}
+                        </>
+                    );
+                })}
+                {ChannelCategory.map((channelData) => {
+                    return (
+                        <>
+                            {List === "Partner" && channelData.channelCharged === false && (
+                                <>
+                                    <ChannelItem
+                                        img="https://scs-phinf.pstatic.net/MjAyMTEyMjdfMTcy/MDAxNjQwNjE2MzE3MTc0.4QwyPmeYhZ_yjQy_IchMbySnayH7lagnineQVWOV2nUg.kkQbmR5PsYgXqWNoZsivjmrcKOVOZ3Eu40LYopus6-og.PNG/image%7Cpremium%7Cchannel%7C3mit%7C2021%7C12%7C27%7C1640616317145.png?type=nfs200_200"
+                                        description={channelData.channelIntro}
+                                        title={channelData.channelName}
+                                        channelIdx={channelData.channelIdx}
+                                    />
+                                </>
+                            )}
+                            {console.log(channelData)}
+                        </>
+                    );
+                })}
+                {/* <ChannelItem
                     img="https://scs-phinf.pstatic.net/MjAyMTEyMjdfMTcy/MDAxNjQwNjE2MzE3MTc0.4QwyPmeYhZ_yjQy_IchMbySnayH7lagnineQVWOV2nUg.kkQbmR5PsYgXqWNoZsivjmrcKOVOZ3Eu40LYopus6-og.PNG/image%7Cpremium%7Cchannel%7C3mit%7C2021%7C12%7C27%7C1640616317145.png?type=nfs200_200"
                     title="3분 IT"
                     description="3분만에 읽을 수 있는 IT트렌드를 배달해드려요"
@@ -168,7 +232,7 @@ const AllChannel = () => {
                     title="스포츠 명가의 재미와 감동"
                     description="스포츠 현장에는 감동이.. 재미가 있습니다. 스포츠 명가라 불리는 선수, 팀, 리그, 이벤트는 매 순간 순간 마다 재미와 감동의 요소를 만들어 팬들을 행복하게 만들고 스포츠의 진 면목을 보여 줍니다. 스포츠 명가를 통해 배울 수 있는 재미와 감동의 요소들을 함께 느껴 보고 나누며 더욱 스포츠를 사랑 하기를 바랍니다."
                     tag="스포츠/건강"
-                />
+                /> */}
             </div>
 
             <style jsx>{`
@@ -300,3 +364,14 @@ const AllChannel = () => {
 };
 
 export default AllChannel;
+
+export async function getServerSideProps() {
+    const res = await fetch(baseURL + `/channelCategory/all`);
+    const results = await res.json();
+    const prop = results;
+    return {
+        props: {
+            prop,
+        },
+    };
+}

@@ -186,12 +186,28 @@ export default function Home() {
                             <>
                                 <div style={{ width: 510, borderRight: "1px solid #CCCCCC" }}>
                                     {data.map((props) => {
-                                        return <>{props.contents_charged === "Y" && <RecommandChannelItem key={props.title} title={props.title} img={props.img} description={props.description} />}</>;
+                                        return (
+                                            <>
+                                                {props.contents_charged === "Y" && (
+                                                    <div key={props.title}>
+                                                        <RecommandChannelItem title={props.title} img={props.img} description={props.description} />
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
                                     })}
                                 </div>
                                 <div style={{ width: 520, marginLeft: "40px" }}>
                                     {data.map((props) => {
-                                        return <>{props.contents_charged === "N" && <RecommandChannelItem key={props.title} title={props.title} img={props.img} description={props.description} />}</>;
+                                        return (
+                                            <>
+                                                {props.contents_charged === "N" && (
+                                                    <div key={props.title}>
+                                                        <RecommandChannelItem title={props.title} img={props.img} description={props.description} />
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
                                     })}
                                 </div>
                             </>
@@ -203,7 +219,9 @@ export default function Home() {
                                         return (
                                             <>
                                                 {props.contents_charged === "Y" && props.tag === "IT/Tech" && (
-                                                    <RecommandChannelItem key={props.title} title={props.title} img={props.img} description={props.description} />
+                                                    <div key={props.title}>
+                                                        <RecommandChannelItem title={props.title} img={props.img} description={props.description} />
+                                                    </div>
                                                 )}
                                             </>
                                         );
@@ -214,7 +232,9 @@ export default function Home() {
                                         return (
                                             <>
                                                 {props.contents_charged === "N" && props.tag === "IT/Tech" && (
-                                                    <RecommandChannelItem key={props.title} title={props.title} img={props.img} description={props.description} />
+                                                    <div key={props.title}>
+                                                        <RecommandChannelItem title={props.title} img={props.img} description={props.description} />
+                                                    </div>
                                                 )}
                                             </>
                                         );
@@ -229,7 +249,9 @@ export default function Home() {
                                         return (
                                             <>
                                                 {props.contents_charged === "Y" && props.tag === "스포츠/건강" && (
-                                                    <RecommandChannelItem key={props.title} title={props.title} img={props.img} description={props.description} />
+                                                    <div key={props.title}>
+                                                        <RecommandChannelItem title={props.title} img={props.img} description={props.description} />
+                                                    </div>
                                                 )}
                                             </>
                                         );
@@ -240,7 +262,9 @@ export default function Home() {
                                         return (
                                             <>
                                                 {props.contents_charged === "N" && props.tag === "스포츠/건강" && (
-                                                    <RecommandChannelItem key={props.title} title={props.title} img={props.img} description={props.description} />
+                                                    <div key={props.title}>
+                                                        <RecommandChannelItem title={props.title} img={props.img} description={props.description} />
+                                                    </div>
                                                 )}
                                             </>
                                         );
@@ -276,12 +300,28 @@ export default function Home() {
                             <>
                                 <div style={{ display: "flex", flexWrap: "wrap", width: 510, borderRight: "1px solid #CCCCCC" }}>
                                     {data.map((props) => {
-                                        return <>{props.contents_charged === "Y" && <RecommandContentsItem key={props.title} title={props.title} img={props.img} />}</>;
+                                        return (
+                                            <>
+                                                {props.contents_charged === "Y" && (
+                                                    <div key={props.title}>
+                                                        <RecommandContentsItem key={props.title} title={props.title} img={props.img} />
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
                                     })}
                                 </div>
                                 <div style={{ display: "flex", flexWrap: "wrap", width: 520, marginLeft: "40px" }}>
                                     {data.map((props) => {
-                                        return <>{props.contents_charged === "N" && <RecommandContentsItem key={props.title} title={props.title} img={props.img} />}</>;
+                                        return (
+                                            <>
+                                                {props.contents_charged === "N" && (
+                                                    <div key={props.title}>
+                                                        <RecommandContentsItem key={props.title} title={props.title} img={props.img} />
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
                                     })}
                                 </div>
                             </>
@@ -290,12 +330,28 @@ export default function Home() {
                             <>
                                 <div style={{ display: "flex", flexWrap: "wrap", width: 510, borderRight: "1px solid #CCCCCC" }}>
                                     {data.map((props) => {
-                                        return <>{props.contents_charged === "Y" && props.tag === "IT/Tech" && <RecommandContentsItem key={props.title} title={props.title} img={props.img} />}</>;
+                                        return (
+                                            <>
+                                                {props.contents_charged === "Y" && props.tag === "IT/Tech" && (
+                                                    <div key={props.title}>
+                                                        <RecommandContentsItem key={props.title} title={props.title} img={props.img} />
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
                                     })}
                                 </div>
                                 <div style={{ display: "flex", flexWrap: "wrap", width: 520, marginLeft: "40px" }}>
                                     {data.map((props) => {
-                                        return <>{props.contents_charged === "N" && props.tag === "IT/Tech" && <RecommandContentsItem key={props.title} title={props.title} img={props.img} />}</>;
+                                        return (
+                                            <>
+                                                {props.contents_charged === "N" && props.tag === "IT/Tech" && (
+                                                    <div key={props.title}>
+                                                        <RecommandContentsItem key={props.title} title={props.title} img={props.img} />
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
                                     })}
                                 </div>
                             </>
@@ -304,12 +360,28 @@ export default function Home() {
                             <>
                                 <div style={{ display: "flex", flexWrap: "wrap", width: 510, borderRight: "1px solid #CCCCCC" }}>
                                     {data.map((props) => {
-                                        return <>{props.contents_charged === "Y" && props.tag === "스포츠/건강" && <RecommandContentsItem key={props.title} title={props.title} img={props.img} />}</>;
+                                        return (
+                                            <>
+                                                {props.contents_charged === "Y" && props.tag === "스포츠/건강" && (
+                                                    <div key={props.title}>
+                                                        <RecommandContentsItem key={props.title} title={props.title} img={props.img} />
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
                                     })}
                                 </div>
                                 <div style={{ display: "flex", flexWrap: "wrap", width: 520, marginLeft: "40px" }}>
                                     {data.map((props) => {
-                                        return <>{props.contents_charged === "N" && props.tag === "스포츠/건강" && <RecommandContentsItem key={props.title} title={props.title} img={props.img} />}</>;
+                                        return (
+                                            <>
+                                                {props.contents_charged === "N" && props.tag === "스포츠/건강" && (
+                                                    <div key={props.title}>
+                                                        <RecommandContentsItem key={props.title} title={props.title} img={props.img} />
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
                                     })}
                                 </div>
                             </>

@@ -3,9 +3,16 @@ import { useState, useEffect } from "react";
 import Home_component from "../components/Home_component";
 import MainFooter from "../components/MainFooter";
 import Link from "next/link";
+import baseURL from "../api/baseURL";
+import axios from "axios";
 const userChannel = ({ prop }) => {
-    console.log(">>111>>", { prop });
+    console.log(">>111>>", prop);
+    // console.log("...", JSON.parse(router?.query.channelData));
     const router = useRouter();
+    console.log(router);
+    const { params } = router.query;
+    console.log(params[1]);
+
     const Premium = {
         img: "https://scs-phinf.pstatic.net/MjAyMTEyMjdfMTcy/MDAxNjQwNjE2MzE3MTc0.4QwyPmeYhZ_yjQy_IchMbySnayH7lagnineQVWOV2nUg.kkQbmR5PsYgXqWNoZsivjmrcKOVOZ3Eu40LYopus6-og.PNG/image%7Cpremium%7Cchannel%7C3mit%7C2021%7C12%7C27%7C1640616317145.png?type=nfs200_200",
         title: "3분 IT",
@@ -13,7 +20,14 @@ const userChannel = ({ prop }) => {
         tag: "IT/Tech",
     };
     const [category, setCategory] = useState("홈");
+    // const getChannelData = async () => {
+    //     const res = await axios.get(baseURL + `/channel/idx/${router.query.params[1]}`);
+    //     console.log(res);
+    // };
 
+    // useEffect(() => {
+    //     getChannelData();
+    // }, []);
     return (
         <>
             <div className="Container">
@@ -35,8 +49,8 @@ const userChannel = ({ prop }) => {
                         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                             <img src={Premium.img} className="template_img" />
                             <div>
-                                <div className="template_title">{Premium.title}</div>
-                                <div className="template_des">평균 주 x회 업데이트</div>
+                                <div className="template_title">{prop.channelName}</div>
+                                <div className="template_des">{prop.channelIntro}</div>
                             </div>
                         </div>
                         <button className="subscriBtn">
@@ -52,7 +66,7 @@ const userChannel = ({ prop }) => {
                     </div>
                     <div className="threeMenu">
                         <div style={{ display: "flex", gap: 40, justifyContent: "center" }}>
-                            {prop.map((data) => {
+                            {prop?.channelBoardList.map((data) => {
                                 return (
                                     <div key={data.channelBoardIdx}>
                                         <div className={category === data.channelBoardName ? "select" : "noneSelect"} onClick={() => setCategory(data.channelBoardName)}>
@@ -63,6 +77,7 @@ const userChannel = ({ prop }) => {
                             })}
                         </div>
                     </div>
+                    {/*5개 메뉴*/}
                     <div className="contents_Container">
                         {category === "홈" && (
                             <>
@@ -275,10 +290,11 @@ const userChannel = ({ prop }) => {
 
 export default userChannel;
 
-export async function getServerSideProps() {
-    const res = await fetch(`http://localhost:8080/precon/channel/idx/1`);
+export async function getServerSideProps(context) {
+    const params = context.params.params[1];
+    const res = await fetch(baseURL + `/channel/idx/${params}`);
     const results = await res.json();
-    const prop = results.channelBoardList;
+    const prop = results;
     return {
         props: {
             prop,

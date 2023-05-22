@@ -5,9 +5,19 @@ const ChannelItem = (Props) => {
     if (content.length >= 70) {
         content = content.substr(0, 68) + "...";
     }
+    console.log("Props", Props);
     return (
         <>
-            <Link href="/" legacyBehavior>
+            <Link
+                href={{
+                    pathname: `/Channel/${Props.title}/${Props.channelIdx}`,
+                    query: {
+                        channelData: JSON.stringify(Props),
+                    },
+                }}
+                as={`/Channel/${Props.title}/${Props.channelIdx}`}
+                legacyBehavior
+            >
                 <a>
                     <div className="container">
                         <img src={Props.img} className="contentsImg" />
