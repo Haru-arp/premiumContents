@@ -50,7 +50,7 @@
 
 -Ver.1 기능 구현
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c1a3ea9c-c60d-48fd-9ae7-d5c93606f208/Untitled.png)
+[![Untitled](https://file.notion.so/f/s/c1a3ea9c-c60d-48fd-9ae7-d5c93606f208/Untitled.png?id=3153469d-1d60-4c9f-bce9-464213e400cd&table=block&spaceId=565d5f0b-c60d-4ff6-93ca-460362338240&expirationTimestamp=1689343200000&signature=BVX1tr_o2mHZzYcgwiDVELMSEV5bXolP0trE0nY_DUY&downloadName=Untitled.png)
 
 ### 04.10 ~ 04.30
 
@@ -178,8 +178,7 @@
 
 ## 변경한 주요 페이지 (~04. 09)
 
-![캡처.PNG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/298ff0e8-7846-4e5a-98e1-4ccecd320a2b/%EC%BA%A1%EC%B2%98.png)
-
+[![캡처.PNG](https://file.notion.so/f/s/298ff0e8-7846-4e5a-98e1-4ccecd320a2b/%EC%BA%A1%EC%B2%98.png?id=5c3db84e-8056-4d32-b4ac-786c0fab4719&table=block&spaceId=565d5f0b-c60d-4ff6-93ca-460362338240&expirationTimestamp=1689343200000&signature=ami0OS6KUP8gCXUQfBr3UNZTISrH3wChRifOVqe9aJQ&downloadName=%EC%BA%A1%EC%B2%98.PNG.png)
 → 내부 점수 알고리즘을 적용하여 메인 페이지에 노출되는 인기 파트너 채널을 기간별 Rank 순으로 노출합니다. 원본 사이트보다 더 Wide하게 구성하여 채널별 가독성을 개선했습니다.
 
 ## GitHub Repository
